@@ -5,7 +5,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
 
+
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -42,11 +42,13 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(tab.getPosition());
             }
         });
-        ActionBar actionBar = getSupportActionBar();
+        tabLayout.getTabAt(0).setIcon(R.drawable.calendar);
+        tabLayout.getTabAt(1).setIcon(R.drawable.contacts80);
+        tabLayout.getTabAt(2).setIcon(R.drawable.gift96);
     }
 
     private class CustomAdapter extends FragmentPagerAdapter {
-        private String fragments[]={"Frag 1", "Frag 2"};
+        private int fragments[]={1,2,3};
 
         public CustomAdapter(FragmentManager supportFragmentManager, Context applicationContext) {
             super(supportFragmentManager);
@@ -54,13 +56,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
+
             switch (position) {
                 case 0:
                     return new Fragment1();
                 case 1:
                     return new Fragment2();
                 default:
-                    return null;
+                    return new Fragment1();
             }
         }
 
@@ -69,9 +72,6 @@ public class MainActivity extends AppCompatActivity {
             return fragments.length;
         }
 
-        @Override
-        public CharSequence getPageTitle(int position){
-            return fragments[position];
-        }
+
     }
 }
