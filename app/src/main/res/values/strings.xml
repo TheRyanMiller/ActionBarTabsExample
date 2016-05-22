@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ActionBarTabsExample</string>
+    <string name="title_activity_fablist">Fablist</string>
 </resources>
